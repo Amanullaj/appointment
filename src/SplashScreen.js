@@ -10,7 +10,7 @@ const SplashScreen = ({navigation}) => {
         },3000);
     },[]);
   return (
-    <View style={{alignItems:"center",backgroundColor:"blue"}}>
+    <View style={{flex:1,alignItems:"center",backgroundColor:"blue"}}>
         <StatusBar backgroundColor={'blue'} barStyle={'light-content'}/>
       <LottieView source={require('../src/images/animation.json')} autoPlay loop style={styles.img}/>
     </View>

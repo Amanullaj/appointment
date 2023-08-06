@@ -37,4 +37,8 @@ const Slots = () => {
 
 export default Slots
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  txt3 : {fontSize:20,color:"black",fontWeight:"bold",padding:10},
+  container : {flex:1,height:50,width:150,borderWidth:1,borderRadius:10,margin:10,alignItems:"center",justifyContent:"center"},
+  btn : {height:50,width:150,borderWidth:0.5,borderRadius:10,alignItems:"center",marginLeft:120,justifyContent:"center",backgroundColor:"#4c669f",marginBottom:20}
+})

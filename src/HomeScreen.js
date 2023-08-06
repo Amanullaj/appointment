@@ -7,6 +7,7 @@ import {useNavigation} from '@react-navigation/native'
 
 const HomeScreen = () => {
 const navigation = useNavigation();
+const data = ["Cardiology","Neurology","ENT","Dermatology","Orthopedic","Pediatrician"]
     return (
         <View style={{flex:1}}>
             <StatusBar backgroundColor={'white'} barStyle={'dark-content'} />
@@ -15,7 +16,8 @@ const navigation = useNavigation();
             <Text style={styles.txt}>Select Category</Text>
             <View>
                 <FlatList
-                    data={[1, 1, 1, 1, 1, 1, 1]}
+                    data={data}
+                    keyExtractor={({item, index})=>index}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item, index }) => {
@@ -23,7 +25,7 @@ const navigation = useNavigation();
                             <View>
                                 <TouchableOpacity >
                                     <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}>
-                                        <Text style={{fontSize:15,color:"white",fontWeight:"500"}}>Category {index + 1}</Text>
+                                        <Text style={{fontSize:15,color:"white",fontWeight:"500"}}>{item}</Text>
                                     </LinearGradient>
                                 </TouchableOpacity>
                             </View>

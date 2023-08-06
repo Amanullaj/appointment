@@ -1,5 +1,6 @@
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState,useEffect } from 'react'
+import Slots from './Slots';
 
 
 const BookAppointment = ({navigation}) => {
@@ -13,6 +14,7 @@ const BookAppointment = ({navigation}) => {
     const [selectedSlot, setSelectedSlot] = useState(-1);
     const [selectedDay, setSelectedDay] = useState(-1);
     const [days, setDays] = useState([]);
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
       DaysList = [];
@@ -58,8 +60,8 @@ const BookAppointment = ({navigation}) => {
     <Text style={styles.txt1}>Dr. Jack</Text>
     <Text style={styles.txt2}>Specialist</Text>
     <View>
-        <TouchableOpacity>
-        <Text style={styles.txt3}>Select Data</Text>
+        <TouchableOpacity onPress={()=>setShow(!show)} style={styles.btn}>
+        <Text style={styles.txt3}>Select Date</Text>
         </TouchableOpacity>
         <View>
           <FlatList
@@ -95,25 +97,9 @@ const BookAppointment = ({navigation}) => {
           />
         </View>
     </View>
-      <Text style={styles.txt3}>Available Slots</Text>
-    <FlatList 
-    numColumns={2}
-    data={data}
-    keyExtractor={({item, index})=> index }
-    renderItem={({item, index})=>{
-            return(
-            <View style={[styles.container,{borderColor: selectedSlot == index ? "blue" : "black"}]}>
-            <TouchableOpacity onPress={()=> {setSelectedSlot(index)}}>
-                 <Text style={{color: selectedSlot == index ? "blue" : "black"}}>{item}</Text>
-            </TouchableOpacity>
-            </View>
-             
-            )
-        }}
-    />
-    <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('Succesfull')}>
-        <Text style={{fontSize:20,color:"white"}}>Book Now</Text>
-    </TouchableOpacity> 
+   {
+    show ? <Slots /> : null
+   }
       </View>
   )
 }
@@ -125,7 +111,7 @@ const styles = StyleSheet.create({
     main : {height:100,width:100,borderWidth:0.5,borderRadius:50,alignItems:"center",justifyContent:"center",marginTop:50,marginLeft:150,backgroundColor:"#4c669f"},
     txt1 : {fontSize:20,color:"black",textAlign:"center",fontWeight:"bold"},
     txt2 : {fontSize:20,color:"green",textAlign:"center"},
-    txt3 : {fontSize:20,color:"black",fontWeight:"bold",padding:10},
+    txt3 : {fontSize:20,color:"white",fontWeight:"bold",padding:10},
     container : {flex:1,height:50,width:150,borderWidth:1,borderRadius:10,margin:10,alignItems:"center",justifyContent:"center"},
-    btn : {height:50,width:150,borderWidth:0.5,borderRadius:10,alignItems:"center",marginLeft:120,justifyContent:"center",backgroundColor:"#4c669f",marginBottom:20}
+    btn : {height:50,width:150,borderWidth:0.5,borderRadius:10,alignItems:"center",marginLeft:120,justifyContent:"center",backgroundColor:"#4c669f",marginBottom:20,marginTop:20}
 })

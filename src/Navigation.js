@@ -6,12 +6,18 @@ import SplashScreen from './SplashScreen';
 import HomeScreen from './HomeScreen';
 import BookAppointment from './BookAppointment';
 import Succesfull from './Succesfull';
+import SignUp from './SignUp';
+import Login from './Login';
+import WelcomeScreen from './WelcomeScreen';
 
 const Stack = createNativeStackNavigator();
 const Navigation = () => {
   return (
    <NavigationContainer>
-    <Stack.Navigator initialRouteName='Splash'>
+    <Stack.Navigator initialRouteName='Welcome'>
+      <Stack.Screen name='Welcome' component={WelcomeScreen} options={{headerShown:false}}/>
+      <Stack.Screen name='SignUp' component={SignUp} options={{headerShown:false}} />
+      <Stack.Screen name='Login' component={Login} options={{headerShown:false}} />
         <Stack.Screen name='Splash' component={SplashScreen} options={{headerShown: false}}/>
         <Stack.Screen name='Home' component={HomeScreen} options={{headerShown:false}} />
         <Stack.Screen name='Appointment' component={BookAppointment} />
