@@ -1,7 +1,10 @@
 import { StyleSheet, Text, View,FlatList,TouchableOpacity } from 'react-native'
 import React, {useState}from 'react'
+import { useNavigation } from '@react-navigation/native';
+
 
 const Slots = () => {
+  const navigation = useNavigation();
     const [selectedSlot, setSelectedSlot] = useState('');
     const  data = [
         "10:00-10:30AM",
@@ -28,7 +31,7 @@ const Slots = () => {
             )
         }}
     />
-    <TouchableOpacity style={styles.btn}>
+    <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('Succesfull')}>
         <Text style={{fontSize:20,color:"white"}}>Book Now</Text>
     </TouchableOpacity> 
     </View>

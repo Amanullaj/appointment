@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, StatusBar, TouchableOpacity, Image, TextInput,Alert } from 'react-native'
 import React, { useState } from 'react'
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 
 const SignUp = ({ navigation }) => {
@@ -8,12 +9,19 @@ const SignUp = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
    
-    const saveData = () => {
+    const saveData = async () => {
         if(!name && !email && !password) {
             Alert.alert("Please fill all the fields");
         } else {
             Alert.alert("SignUP Succesfull  ");
             navigation.navigate('Login');
+        }
+        try {
+        const res = await auth().createUserWithEmailAndPassword(email,password);
+        console.warn(res)
+        } catch(error)
+        {
+            console.warn(error)
         }
           firestore()
             .collection('Users')
@@ -62,5 +70,5 @@ const styles = StyleSheet.create({
     input: { height: 50, width: 350, padding: 10, borderRadius: 20, backgroundColor: '#F0F0F0' },
     input1: { height: 50, width: 350, padding: 10, borderRadius: 20, backgroundColor: '#ffcc00', justifyContent: 'center', alignItems: 'center', marginTop: 30 },
     btn: { height: 50, width: 300, borderRadius: 20, backgroundColor: '#ffcc00', marginLeft: 50, alignItems: 'center', justifyContent: 'center', marginTop: 50 },
-    contain: { backgroundColor: 'white', padding: 20, marginTop: 20, borderTopLeftRadius: 40, borderTopRightRadius: 40, height: 500 }
+    contain: {flex:1, backgroundColor: 'white', padding: 20, marginTop: 20, borderTopLeftRadius: 40, borderTopRightRadius: 40, height: 500 }
 })
