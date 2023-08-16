@@ -2,6 +2,7 @@ import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View,Modal,ScrollV
 import React, { useState, useEffect } from 'react'
 import Slots from './Slots';
 import { Calendar, LocaleConfig } from 'react-native-calendars';
+import { useRoute } from '@react-navigation/native';
 
 
 const BookAppointment = ({ navigation }) => {
@@ -9,6 +10,7 @@ const BookAppointment = ({ navigation }) => {
   const [show, setShow] = useState(false);
   const [showModal, setShowModal] = useState(false)
   const [selected, setSelected] = useState('');
+  const route = useRoute();
  
   return (
     <View style={{ flex: 1 }}>
@@ -17,8 +19,8 @@ const BookAppointment = ({ navigation }) => {
       
         <Image source={require('../src/images/doctor.png')} style={styles.img} />
       </View>
-      <Text style={styles.txt1}>Dr. Roy</Text>
-      <Text style={styles.txt2}>Specialist</Text>
+      <Text style={styles.txt1}>{route.params.data.name}</Text>
+      <Text style={styles.txt2}>{route.params.data.speciality}</Text>
       <View>
          <Text style={styles.txt3}>Select Date</Text>
        <View>         

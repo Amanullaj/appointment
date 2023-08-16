@@ -98,7 +98,7 @@ const HomeScreen = () => {
                                     {
                                         item.speciality == 'Cardiology' ?
 
-                                            <TouchableOpacity onPress={() => navigation.navigate('Appointment')}>
+                                            <TouchableOpacity onPress={() => navigation.navigate('Appointment',{data:item})}>
                                                 <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient1}>
                                                     <Text style={{ fontSize: 15, color: "white", fontWeight: "500" }}>Book Appointment</Text>
                                                 </LinearGradient>
